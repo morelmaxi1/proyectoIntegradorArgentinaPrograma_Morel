@@ -1,0 +1,11 @@
+.row{
+
+    padding: 20px;
+}
+
+div{
+    background-color: rgb(173, 213, 247);
+}
+h1,h3{
+    display: inline;
+}
