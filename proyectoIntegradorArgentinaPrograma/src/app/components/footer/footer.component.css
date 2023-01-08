@@ -1,0 +1,18 @@
+img{
+    height: 20px;
+    width: 30px;
+    display: inline;
+}
+.row{
+    padding: 20px;
+    background-color:  rgb(59, 161, 250);
+
+}
+footer{
+    
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    box-shadow: 2px -2px 5px #0000;
+}
