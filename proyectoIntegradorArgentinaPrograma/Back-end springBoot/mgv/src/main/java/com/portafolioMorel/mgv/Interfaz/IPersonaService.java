@@ -15,7 +15,13 @@ public interface IPersonaService {
 	public void deletePersona(Long id);
 	
 	//buscar una persona por id
-	public Persona findPersona(Long id);
+	public Persona findPersona(long id);
+
+	List<Persona> getPersonas();
+
+	Persona findPersona(Long id);
+
+
 
 
 

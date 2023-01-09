@@ -19,7 +19,7 @@ public class ImpPersonaService implements IPersonaService{
 	
 	
 	@Override
-	public List<Persona> getPersona() {
+	public List<Persona> getPersonas() {
 		List<Persona> listaPersona = Ipersonarepository.findAll();
 		return listaPersona;
 	}
@@ -36,9 +36,21 @@ public class ImpPersonaService implements IPersonaService{
 	}
 
 	@Override
-	public Persona findPersona(Long id) {
-       Persona persona = Ipersonarepository.findById(id).orElse(null);
-		return persona;
+	public List<Persona> getPersona() {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+	
+	
+
+	
+
+	@Override
+	public Persona findPersona(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
