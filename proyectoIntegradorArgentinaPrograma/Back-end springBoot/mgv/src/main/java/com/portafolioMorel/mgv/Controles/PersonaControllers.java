@@ -23,7 +23,7 @@ public class PersonaControllers {
 
 @GetMapping("/personas/traer")
 public List<Persona> getPersonas( ){
-	return ipersonaService.getPersona();
+	return ipersonaService.getPersonas();
 }
 
 @PostMapping("/personas/crear")
@@ -50,9 +50,9 @@ public Persona editarPersona(@PathVariable Long id,
 	ipersonaService.SavePersona(persona);
 	return persona;
 	}
-@GetMapping("/personas/traer/perfil")
-public Persona findPersonas( ){
-	return ipersonaService.findPersona((long)1);
+@GetMapping("personas/traer/perfil")
+public Persona findPersonas() {
+	return ipersonaService.findPersona((long)4);
 }
 
 }

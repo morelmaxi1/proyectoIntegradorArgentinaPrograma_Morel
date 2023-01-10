@@ -1,6 +1,5 @@
 package com.portafolioMorel.mgv.Services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,43 +13,34 @@ import com.portafolioMorel.mgv.Repository.IPersonaRepository;
 public class ImpPersonaService implements IPersonaService{
 
 	@Autowired 
-	IPersonaRepository Ipersonarepository;
+	IPersonaRepository ipersonarepository;
 	
 	
 	
 	@Override
 	public List<Persona> getPersonas() {
-		List<Persona> listaPersona = Ipersonarepository.findAll();
+		List<Persona> listaPersona = ipersonarepository.findAll();
 		return listaPersona;
 	}
 
 	@Override
 	public void SavePersona(Persona persona) {
-		Ipersonarepository.save(persona);
+		ipersonarepository.save(persona);
 	}
 
 	@Override
 	public void deletePersona(Long id) {
-	  Ipersonarepository.deleteById(id);
+	  ipersonarepository.deleteById(id);
 		
 	}
 
 	@Override
-	public List<Persona> getPersona() {
-		// TODO Auto-generated method stub
-		return null;
+	public Persona findPersona( Long id) {
+		Persona persona = ipersonarepository.findById(id).orElse(null);
+		return  persona;
 	}
 
 	
-	
-
-	
-
-	@Override
-	public Persona findPersona(long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 }

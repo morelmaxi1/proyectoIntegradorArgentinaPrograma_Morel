@@ -6,7 +6,7 @@ import com.portafolioMorel.mgv.Entity.Persona;
 
 public interface IPersonaService {
 	//Trae una lista de Persona
-	public List<Persona> getPersona();	
+	public List<Persona> getPersonas();	
 	
 	//Guarda un objeto de Persona
 	public void SavePersona(Persona persona);
@@ -15,11 +15,11 @@ public interface IPersonaService {
 	public void deletePersona(Long id);
 	
 	//buscar una persona por id
-	public Persona findPersona(long id);
+	public Persona findPersona(Long id);
 
-	List<Persona> getPersonas();
+	
 
-	Persona findPersona(Long id);
+	
 
 
 
