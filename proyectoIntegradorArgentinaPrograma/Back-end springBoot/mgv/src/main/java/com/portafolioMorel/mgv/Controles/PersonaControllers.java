@@ -3,6 +3,7 @@ package com.portafolioMorel.mgv.Controles;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,18 +26,19 @@ public class PersonaControllers {
 public List<Persona> getPersonas( ){
 	return ipersonaService.getPersonas();
 }
-
+@PreAuthorize("hasRole('ADMIN')")
 @PostMapping("/personas/crear")
 public void createPersona(@RequestBody Persona persona) {
 	ipersonaService.SavePersona(persona);
 	System.out.println("se creo correctamente una persona"); 
 }
+@PreAuthorize("hasRole('ADMIN')")
 @DeleteMapping("/personas/borrar/{id}" )
 public void deletePersona(@PathVariable Long id) {
 	ipersonaService.deletePersona(id);
 	System.out.println("La persona fue elimenada correctamente");
 }
-
+@PreAuthorize("hasRole('ADMIN')")
 @PutMapping("/personas/editar/{id}")
 public Persona editarPersona(@PathVariable Long id, 
 		                     @RequestParam("nombre")String nuevoNombre,
