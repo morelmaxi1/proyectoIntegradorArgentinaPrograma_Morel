@@ -11,15 +11,41 @@ import javax.validation.constraints.Size;
 
 @Entity
 public class Persona {
+
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	
-	public Persona(Long id, @NotNull @Size(min = 1, max = 50, message = " No cumple con la Longuitud") String nombre,
-			@NotNull @Size(min = 1, max = 50, message = " No cumple con la Longuitud") String apellido,
-			@Size(min = 1, max = 50, message = " No cumple con la Longuitud") String img) {
-		
+	@NotNull
+	@Size(min = 1, max = 50, message = " No cumple con la Longuitud")
+	private String nombre;
+	
+
+	@NotNull
+	@Size(min = 1, max = 50, message = " No cumple con la Longuitud")
+	private String apellido;
+	
+
+	
+	private String img;
+	
+	@NotNull
+	private String descripcion;
+	
+	
+
+
+
+	public Persona(int id, @NotNull @Size(min = 1, max = 50, message = " No cumple con la Longuitud") String nombre,
+			@NotNull @Size(min = 1, max = 50, message = " No cumple con la Longuitud") String apellido, String img,
+			@NotNull String descripcion) {
+		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.img = img;
+		this.descripcion = descripcion;
 	}
 
 
@@ -37,13 +63,13 @@ public class Persona {
 
 
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
 
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -85,22 +111,16 @@ public class Persona {
 
 
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@NotNull
-	@Size(min = 1, max = 50, message = " No cumple con la Longuitud")
-	private String nombre;
-	
+	public String getDescripcion() {
+		return descripcion;
+	}
 
-	@NotNull
-	@Size(min = 1, max = 50, message = " No cumple con la Longuitud")
-	private String apellido;
-	
 
-	
-	@Size(min = 1, max = 50, message = " No cumple con la Longuitud")
-	private String img;
-	
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+
+
 }

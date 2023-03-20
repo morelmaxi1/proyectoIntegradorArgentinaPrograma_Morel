@@ -2,3 +2,8 @@
     background-color:  rgb(173, 213, 247);;
     padding: 20px;
 }
+.circulo{
+   display: flex;
+   flex-direction: column; 
+   align-items: center;
+}

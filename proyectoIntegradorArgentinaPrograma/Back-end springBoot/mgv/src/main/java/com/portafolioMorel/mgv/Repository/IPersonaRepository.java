@@ -9,14 +9,10 @@ import org.springframework.stereotype.Repository;
 import com.portafolioMorel.mgv.Entity.Persona;
 
 @Repository
-public interface IPersonaRepository extends JpaRepository<Persona, Long> {
+public interface IPersonaRepository extends JpaRepository<Persona, Integer> {
+	public Optional<Persona>findByNombre(String nombre);
+	public boolean existsByNombre(String nombre);
 
-	List<Persona> findAll();
-
-	void deleteById(Long id);
-
-	Optional<Persona> findById(Long id);
-	
 	
 
 }

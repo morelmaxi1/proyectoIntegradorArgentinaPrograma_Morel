@@ -12,7 +12,7 @@ public class Experiencia {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private int id;
 private String nombreE;
-private String descripcion;
+private String descripcionE;
 
 
 //contructores
@@ -20,10 +20,10 @@ public Experiencia() {
 }
 
 
-public Experiencia(String nombreE, String descripcion) {
+public Experiencia(String nombreE, String descripcionE) {
 	
 	this.nombreE = nombreE;
-	this.descripcion = descripcion;
+	this.descripcionE = descripcionE;
 }
 
 
@@ -47,13 +47,13 @@ public void setNombreE(String nombreE) {
 }
 
 
-public String getDescripcion() {
-	return descripcion;
+public String getDescripcionE() {
+	return descripcionE;
 }
 
 
-public void setDescripcion(String descripcion) {
-	this.descripcion = descripcion;
+public void setDescripcionE(String descripcionE) {
+	this.descripcionE = descripcionE;
 }
 
 

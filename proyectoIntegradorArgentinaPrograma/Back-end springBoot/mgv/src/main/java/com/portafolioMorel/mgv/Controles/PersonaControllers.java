@@ -2,59 +2,69 @@ package com.portafolioMorel.mgv.Controles;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.portafolioMorel.mgv.Dto.DtoPersona;
 import com.portafolioMorel.mgv.Entity.Persona;
-import com.portafolioMorel.mgv.Interfaz.IPersonaService;
+import com.portafolioMorel.mgv.Security.Controller.Mensaje;
+import com.portafolioMorel.mgv.Services.ImpPersonaService;
 
 @RestController
+@RequestMapping("/personas")
 @CrossOrigin(origins = "http://localhost:4200")
 public class PersonaControllers {
-@Autowired IPersonaService ipersonaService;
+	@Autowired
+	ImpPersonaService iPersonaService;
 
-
-@GetMapping("/personas/traer")
-public List<Persona> getPersonas( ){
-	return ipersonaService.getPersonas();
-}
-@PreAuthorize("hasRole('ADMIN')")
-@PostMapping("/personas/crear")
-public void createPersona(@RequestBody Persona persona) {
-	ipersonaService.SavePersona(persona);
-	System.out.println("se creo correctamente una persona"); 
-}
-@PreAuthorize("hasRole('ADMIN')")
-@DeleteMapping("/personas/borrar/{id}" )
-public void deletePersona(@PathVariable Long id) {
-	ipersonaService.deletePersona(id);
-	System.out.println("La persona fue elimenada correctamente");
-}
-@PreAuthorize("hasRole('ADMIN')")
-@PutMapping("/personas/editar/{id}")
-public Persona editarPersona(@PathVariable Long id, 
-		                     @RequestParam("nombre")String nuevoNombre,
-		                     @RequestParam("apellido")String nuevoApellido,
-		                     @RequestParam("img")String nuevoImg) {
-	Persona persona = ipersonaService.findPersona(id);
-	
-	persona.setNombre(nuevoNombre);
-	persona.setApellido(nuevoApellido);
-	persona.setImg(nuevoImg);
-	ipersonaService.SavePersona(persona);
-	return persona;
+	@GetMapping("/lista")
+	public ResponseEntity<List<Persona>> list() {
+		List<Persona> list = iPersonaService.list();
+		return new ResponseEntity(list, HttpStatus.OK);
 	}
-@GetMapping("personas/traer/perfil")
-public Persona findPersonas() {
-	return ipersonaService.findPersona((long)4);
-}
 
+	
+
+@GetMapping("/detail/{id}")
+    public ResponseEntity<Persona> getById(@PathVariable("id") int id){
+        if(!iPersonaService.existsByid(id))
+            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
+        Persona persona = iPersonaService.getOne(id).get();
+        return new ResponseEntity(persona, HttpStatus.OK);
+    }
+
+	@PutMapping("/update/{id}")
+	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoPersona dtoPersona) {
+
+		if (!iPersonaService.existsByid(id))
+			return new ResponseEntity(new Mensaje("El id no existe"), HttpStatus.BAD_REQUEST);
+
+		if (iPersonaService.existsByNombre(dtoPersona.getNombre())
+				&& iPersonaService.getByNombre(dtoPersona.getNombre()).get().getId() != id)
+			return new ResponseEntity(new Mensaje("Essa Persona ya existe"), HttpStatus.BAD_REQUEST);
+
+		if (StringUtils.isBlank(dtoPersona.getNombre()))
+			return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
+
+		Persona persona = iPersonaService.getOne(id).get();
+		persona.setNombre(dtoPersona.getNombre());
+		persona.setDescripcion(dtoPersona.getDescripcion());
+
+		iPersonaService.save(persona);
+
+		return new ResponseEntity(new Mensaje("Persona actualizada"), HttpStatus.OK);
+	}
+
+	
 }
