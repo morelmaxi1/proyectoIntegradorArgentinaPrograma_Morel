@@ -51,6 +51,7 @@ auth.userDetailsService(userDetailsImpl).passwordEncoder(passwordEncoder());
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
+	
 	@Override
 	protected AuthenticationManager authenticationManager() throws Exception {
 		

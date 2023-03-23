@@ -1,4 +1,4 @@
-package com.portafolioMorel.mgv.Controles;
+package com.portafolioMorel.mgv.Controllers;
 
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
