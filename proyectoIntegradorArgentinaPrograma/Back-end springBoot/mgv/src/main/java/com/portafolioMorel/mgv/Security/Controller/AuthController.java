@@ -32,10 +32,10 @@ import com.portafolioMorel.mgv.Security.Service.RolService;
 import com.portafolioMorel.mgv.Security.Service.UsuarioService;
 import com.portafolioMorel.mgv.Security.jwt.JwtProvider;
 
-@SuppressWarnings("unused")
+
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin
+@CrossOrigin(origins = "https://frontendargen.web.app")
 public class AuthController {
 	
 @Autowired

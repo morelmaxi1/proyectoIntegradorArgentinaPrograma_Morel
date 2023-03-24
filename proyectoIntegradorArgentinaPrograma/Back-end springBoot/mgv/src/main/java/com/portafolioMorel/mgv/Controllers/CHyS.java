@@ -23,7 +23,7 @@ import com.portafolioMorel.mgv.Services.Shys;
 
 @RestController
 @RequestMapping("/hys")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://frontendargen.web.app")
 public class CHyS {
 	
 	@Autowired

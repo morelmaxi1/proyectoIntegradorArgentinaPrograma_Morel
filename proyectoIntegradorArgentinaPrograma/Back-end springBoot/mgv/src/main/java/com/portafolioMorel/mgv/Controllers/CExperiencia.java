@@ -22,7 +22,7 @@ import com.portafolioMorel.mgv.Services.SExperiencia;
 
 @RestController
 @RequestMapping("explab")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://frontendargen.web.app/")
 public class CExperiencia {
 
 	@Autowired

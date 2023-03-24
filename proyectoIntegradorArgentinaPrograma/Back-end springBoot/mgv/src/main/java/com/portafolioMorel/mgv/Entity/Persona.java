@@ -40,7 +40,7 @@ public class Persona {
 	public Persona(int id, @NotNull @Size(min = 1, max = 50, message = " No cumple con la Longuitud") String nombre,
 			@NotNull @Size(min = 1, max = 50, message = " No cumple con la Longuitud") String apellido, String img,
 			@NotNull String descripcion) {
-		super();
+
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -50,9 +50,15 @@ public class Persona {
 
 
 
+
+
+
 	public Persona() {
-	
+		
 	}
+
+
+
 
 
 
